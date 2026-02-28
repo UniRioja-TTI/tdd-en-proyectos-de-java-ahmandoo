@@ -1,17 +1,16 @@
-package com.tt1.test;
+package com.tt1.test.mocks;
+
+import com.tt1.test.IDB;
+import com.tt1.test.ToDo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class DBStub implements IDB{
-    private final HashMap<String, ToDo> tareas;
-    private final List<String> agenda;
-
-    public DBStub(){
-        tareas = new HashMap<>();
-        agenda = new ArrayList<>();
-    }
+public class DBStubMock implements IDB {
+    private Map<String, ToDo> tareas = new HashMap<>();
+    private List<String> agenda = new ArrayList<>();
 
     @Override
     public void guardarToDo(ToDo tarea) {
@@ -20,7 +19,8 @@ public class DBStub implements IDB{
 
     @Override
     public ToDo obtenerPorNombre(String nombre) {
-        return tareas.get(nombre);
+        ToDo tarea = tareas.get(nombre);
+        return tarea;
     }
 
     @Override
@@ -30,12 +30,12 @@ public class DBStub implements IDB{
 
     @Override
     public void actualizarToDo(ToDo tarea) {
-        tareas.replace(tarea.getNombre(), tarea);
+
     }
 
     @Override
     public void removeToDo(ToDo tarea) {
-        tareas.remove(tarea.getNombre());
+
     }
 
     @Override
